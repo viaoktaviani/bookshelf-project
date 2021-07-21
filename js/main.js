@@ -6,4 +6,16 @@ document.addEventListener("DOMContentLoaded",function(){ //memanggil event dom c
         event.preventDefault();                             //mencegah untuk kembali ke default atau refresh
         addBook();                                          //memanggil fungsi addTodo pada script dom js
     });
-});
+
+//     if(isStorageExist()){
+//         loadDataStoraged();
+//     }
+// });
+
+// document.addEventListener("ondatasaved",()=>{
+//     console.log("data berhasil disimpan");
+// });
+
+// document.addEventListener("ondataloaded", () => {
+//     refreshdata();
+ });
