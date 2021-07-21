@@ -11,19 +11,18 @@ function addBook(){
     if(checkbox.checked ==true){
         const bukuYangSudahDibaca= document.getElementById(sudahDibaca);
         const publish = pembuatanBuku(judulBuku,penulisBuku,tahunBuku,true);
-        bukuYangSudahDibaca.append(publish);
         const publishObject= composeBookshelfObject(judulBuku,penulisBuku,tahunBuku,true);
         bukuYangSudahDibaca[bookShelfItem] =publishObject.id;
         shelfbook.push(publishObject);
+        bukuYangSudahDibaca.append(publish);
         updateDataStorage();
 
     }else{
     const bukuYangBelumDibaca = document.getElementById(belumDibaca);
     const informasi = pembuatanBuku(judulBuku,penulisBuku,tahunBuku,false);
-    const informasiObject = composeBookshelfObject(judulBuku,penulisBuku,tahunBuku,false)
+    const informasiObject = composeBookshelfObject(judulBuku,penulisBuku,tahunBuku,false);
     informasi[bookShelfItem]=informasiObject.id;
     shelfbook.push(informasiObject);
-
     bukuYangBelumDibaca.append(informasi);
     updateDataStorage();
     }
@@ -37,12 +36,12 @@ function pembuatanBuku(judul,penulis,tahun,isComplete){
     inputJudul.innerText= judul;
 
 
-    const inputPenulis=document.createElement("p");
-    inputPenulis.innerText= penulis;
+    const inputPenulis=document.createElement("h4");
+    inputPenulis.innerText= "Penulis:" + penulis;
     inputPenulis.classList.add("writer");
 
     const inputTahun =document.createElement("p");
-    inputTahun.innerText= tahun;
+    inputTahun.innerText= "Tahun:" + tahun;
     inputTahun.classList.add("year");
 
 
@@ -51,7 +50,8 @@ function pembuatanBuku(judul,penulis,tahun,isComplete){
 
     const container= document.createElement ("article");
     container.classList.add ("book_item")
-    container.append(inputJudul,inputPenulis,inputTahun,newContainer);
+    container.append(inputJudul,inputPenulis,inputTahun);
+    container.append(newContainer);
 
     if(isComplete){  //jika kondisi iscompleted terusih seperti true
         newContainer.append(tombolMerah(),undobutton()); //maka kontainer akan menambahkan button untuk undo dan sampah
@@ -73,13 +73,12 @@ function pembuatanTombol (buttonTypeClass,eventListener,text){
 
 function selesaiDibaca(listSudahDibaca){
     const judulInputan = listSudahDibaca.querySelector(".book_item > h3").innerText;
-    const penulisInputan = listSudahDibaca.querySelector(".book_item >.writer").innerText;
-    const tahunInputan= listSudahDibaca.querySelector(".book_item>.year").innerText;
+    const penulisInputan = listSudahDibaca.querySelector(".book_item>h4").innerText.replace("Penulis:","");
+    const tahunInputan= listSudahDibaca.querySelector(".book_item>p").innerText.replace("Tahun:","");
     const pembuatanBukuBaru =pembuatanBuku(judulInputan,penulisInputan,tahunInputan,true);
     const baru = findBookshelf(listSudahDibaca[bookShelfItem]);
-    baru.isComplete = true;
+    baru.isComplete= true;
     pembuatanBukuBaru[bookShelfItem]=baru.id;
-
     const telahDibaca= document.getElementById(sudahDibaca);
     telahDibaca.append(pembuatanBukuBaru);
     listSudahDibaca.remove();
@@ -90,19 +89,20 @@ function selesaiDibaca(listSudahDibaca){
 function undo(listSudahDibaca){
     const belumSelesai = document.getElementById(belumDibaca);
     const judulInputan= listSudahDibaca.querySelector(".book_item> h3").innerText;
-    const penulisInputan= listSudahDibaca.querySelector(".book_item>.writer").innerText;
-    const tahunInputan= listSudahDibaca.querySelector(".book_item>.year").innerText;
+    const penulisInputan= listSudahDibaca.querySelector(".book_item>h4").innerText.replace("Penulis:","");
+    const tahunInputan= listSudahDibaca.querySelector(".book_item>p").innerText.replace("Tahun:","");
     const pembuatanBukuBaru = pembuatanBuku(judulInputan,penulisInputan,tahunInputan,false);
-    const baruu= findBookshelf(listSudahDibaca[bookShelfItem]);
-    baruu.isComplete= false;
-    pembuatanBukuBaru[bookShelfItem]=baruu.id;
+    const bukubaru= findBookshelf(listSudahDibaca[bookShelfItem]);
+    bukubaru.isComplete= false;
+    pembuatanBukuBaru[bookShelfItem]=bukubaru.id;
     belumSelesai.append(pembuatanBukuBaru);
     listSudahDibaca.remove();
+
     updateDataStorage();
 };
 
 function hapus(listSudahDibaca){
-    const  position = findBookiIndex (listSudahDibaca[bookShelfItem]);
+    const  position = findBookiIndex(listSudahDibaca[bookShelfItem]);
     shelfbook.splice(position,1);
     listSudahDibaca.remove();
     updateDataStorage();
@@ -117,7 +117,7 @@ function tombolHijau(){
 
 function tombolMerah(){
     return pembuatanTombol("red",function(event){
-        hapus(event.target.parentElement.parentElement.parentElement);},"Hapus")
+        hapus(event.target.parentElement.parentElement);},"Hapus")
     };
 
 function undobutton(){
