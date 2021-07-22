@@ -17,5 +17,6 @@ document.addEventListener("ondatasaved",()=>{
 });
 
 document.addEventListener("ondataloaded", () =>{
+    console.log("otw refresh data ni");
     refreshdata();
  });

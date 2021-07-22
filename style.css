@@ -14,32 +14,37 @@ input, button {
 
 .head_bar {
     padding: 12px;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
-    background-color: cornflowerblue;
+    background-color: rgb(2, 108, 116);
     color: white;
 }
 
 main {
-    max-width: 800px;
-    width: 80%;
+    display: flex;
+    /* flex-direction: column; */
+    /* max-width: 800px; */
+    width: 100%;
     margin: 0 auto;
     padding: 16px;
 
 }
 
 .input_section {
-    display: flex;
-    flex-direction: column;
+    margin-left: 16px;
     padding: 16px;
     border: 1px solid black;
     border-radius: 10px;
+    width: 90%;
+    flex-direction: column;
+    margin-top: 0;
+    
 }
 
 .input_section > h2 {
     text-align: center;
-    color: cornflowerblue;
+    color: rgb(2, 108, 116);
 }
 
 .input_section > form > .input {
@@ -47,7 +52,7 @@ main {
 }
 
 .input_section > form > button {
-    background-color: cornflowerblue;
+    background-color: rgb(2, 108, 116);
     color: white;
     border: 0;
     border-radius: 5px;
@@ -71,7 +76,7 @@ main {
 
 
 .input_section > form > .input > label {
-    color: cornflowerblue;
+    color:  rgb(2, 108, 116);
     font-weight: bold;
 }
 
@@ -82,7 +87,7 @@ main {
 }
 
 .input_section > form > .input_inline > label {
-    color: cornflowerblue;
+    color:  rgb(2, 108, 116);
     font-weight: bold;
     margin-right: 10px;
 }
@@ -90,20 +95,22 @@ main {
 .search_section {
     margin: 16px 0;
     display: flex;
-    flex-direction: column;
+    width: 90%;
     align-items: center;
+    flex-direction: column;
     padding: 16px;
     border: 1px solid black;
     border-radius: 10px;
+    margin-left: 16px;
 }
 
 .search_section > h2 {
-    color: cornflowerblue;
+    color:  rgb(2, 108, 116);
 }
 
 .search_section > form {
     padding: 16px;
-    width: 100%;
+    width: 80%;
     display: grid;
     grid-template-columns: auto 1fr 0.5fr;
     grid-gap: 10px;
@@ -120,7 +127,7 @@ main {
 }
 
 .search_section > form > button {
-    background-color: cornflowerblue;
+    background-color:  rgb(2, 108, 116);
     color: white;
     border: 0;
     border-radius: 5px;
@@ -132,14 +139,20 @@ main {
     border: 1px solid black;
     padding: 16px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .book_shelf > h2 {
-    color: cornflowerblue;
+    text-align: center;
+    color:  rgb(2, 108, 116);
+    width: auto;
 }
 
 .book_shelf > .book_list {
-    padding: 16px;
+    padding: 10px;
+    /* width: 80%; */
 }
 
 .book_shelf > .book_list > .book_item {
@@ -170,3 +183,27 @@ main {
     background-color: darkred;
     color: white;
 }
+
+.flex-container-column {
+    display: flex;
+    /* properti pendukung */
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+ }
+  
+ .flex-container-row {
+    display: flex;
+ }
+
+ footer {
+    clear: both;
+    height: 20px;
+    margin:auto;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    position: static;
+    color: white;
+    background-color: rgb(2, 108, 116);
+    
