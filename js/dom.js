@@ -12,7 +12,7 @@ function addBook(){
         const bukuYangSudahDibaca= document.getElementById(sudahDibaca);
         const publish = pembuatanBuku(judulBuku,penulisBuku,tahunBuku,true);
         const publishObject= composeBookshelfObject(judulBuku,penulisBuku,tahunBuku,true);
-        bukuYangSudahDibaca[bookShelfItem] =publishObject.id;
+        publish[bookShelfItem] =publishObject.id;
         shelfbook.push(publishObject);
         bukuYangSudahDibaca.append(publish);
         updateDataStorage();
@@ -112,7 +112,7 @@ function hapus(listSudahDibaca){
 function tombolHijau(){
     return pembuatanTombol("green",function(event){
     selesaiDibaca(event.target.parentElement.parentElement);
-    },"Selesai di baca")
+    },"Selesai dibaca")
 };
 
 function tombolMerah(){
@@ -122,22 +122,22 @@ function tombolMerah(){
 
 function undobutton(){
     return pembuatanTombol("green", function(event){
-        undo(event.target.parentElement.parentElement);},"Undo")
+        undo(event.target.parentElement.parentElement);},"Belum Selesai dibaca")
     };
 
-// function refreshdata(){
-//     const uncompleted = document.getElementById(belumDibaca);
-//     let completed = document.getElementById(sudahDibaca);
+function refreshdata(){
+    const uncompleted = document.getElementById(belumDibaca);
+    let completed = document.getElementById(sudahDibaca);
 
-//     for(book of bookShelfItem){
-//         const newbook = pembuatanBuku (book.judulBuku, book.penulisBuku, book.tahunBuku, book.isComplete);
-//         newbook[bookShelfItem]=book.id;
+    for(book of shelfbook){
+        const newbook = pembuatanBuku(book.judul,book.penulis,book.tahun,book.isComplete); //harus sama dengan composeobject
+        newbook[bookShelfItem]=book.id;
 
 
-//     if (book.isComplete){
-//         completed.append(newbook);
-//     }else{
-//         uncompleted.append(newbook);
-//     }
-//     }
-//     }
+    if (book.isComplete){
+        completed.append(newbook);
+    }else{
+        uncompleted.append(newbook);
+    }
+    }
+    }
